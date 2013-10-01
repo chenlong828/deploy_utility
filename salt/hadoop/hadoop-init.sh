@@ -4,7 +4,6 @@ saltmaster_host="saltstack"
 saltmaster_hostip="172.22.241.156"
 host_name=$1
 
-passwd
 echo $1 > /etc/hostname
 sed -i "s/localhost.cs2cloud.internal/"$host_name"/" /etc/hosts
 
@@ -18,5 +17,6 @@ echo $saltmaster_hostip"	"$saltmaster_host >> /etc/hosts
 /etc/init.d/salt-minion restart
 
 mkdir /dfs
-mkfs.ext3 /dev/sdb -y
-echo "/dev/sdb	/dfs	defaults	0	0"
+mkfs.ext3 /dev/sdb
+echo -e "/dev/sdb\t/dfs\text3\tdefaults\t0\t0" >> /etc/fstab
+mount -a
