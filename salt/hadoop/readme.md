@@ -18,4 +18,8 @@ use salt to deploy jdk packages to /opt directory:
 
 And then use cmd.run to automatic install the jdk
 
-> salt 'saltmaster' cmd.run "./jdk-6u34-linux-x64.bin << echo -e '\n'" runas="root" pwd="/opt"
+> salt 'hadoop*' cmd.run "./jdk-6u34-linux-x64.bin << echo -e '\n'" runas="root" pwd="/opt"
+
+Adjust the environments settings, the environment file is located in the etc/environments file.
+
+> salt 'hadoop*' statel.sls java-env
