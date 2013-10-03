@@ -1,9 +1,6 @@
-vim:
-  pkg.installed
-
-/etc/vimrc:
+/etc/environment:
   file.managed:
-    - source: salt://etc/vimrc
+    - source: salt://etc/environment
     - mode: 644
     - user: root
     - group: root
