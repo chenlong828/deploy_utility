@@ -5,11 +5,23 @@
     - user: root
     - group: root
 
-install-jdk:
+chmod_jdk:
   cmd:
     - cwd: /opt
     - names:
-      - jdk-6u34-linux-x64.bin << echo -e "\t"
+      - chmod +x jdk-6u34-linux-x64.bin
     - run
+    - user: root
     - require:
       - file: /opt/jdk-6u34-linux-x64.bin
+
+run_jdk:
+  cmd:
+    - cwd: /opt
+    - names:
+      - ./jdk-6u34-linux-x64.bin << echo -e "\t" && ln -s jdk1.6.0_34 jdk
+    - run
+    - user: root
+    - require:
+      - cmd: chmod_jdk
+

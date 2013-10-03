@@ -1,33 +1,80 @@
-/opt/jdk-6u34-linux-x64.bin:
+/opt/hadoop-1.2.1-bin.tar.gz:
   file.managed:
-    - source: salt://packages/jdk-6u34-linux-x64.bin
+    - source: salt://packages/hadoop-1.2.1-bin.tar.gz
     - mode: 644
     - user: root
     - group: root
 
-chmod_jdk:
+extract_hadoop:
   cmd:
     - cwd: /opt
     - names:
-      - chmod +x jdk-6u34-linux-x64.bin
+      - tar xvpf hadoop-1.2.1-bin.tar.gz
     - run
     - user: root
     - require:
-      - file: /opt/jdk-6u34-linux-x64.bin
+      - file: /opt/hadoop-1.2.1-bin.tar.gz
 
-run_jdk:
+init_hadoop:
   cmd:
     - cwd: /opt
     - names:
-      - ./jdk-6u34-linux-x64.bin << echo -e "\t" && ln -s jdk1.6.0_34 jdk
+      - ln -s hadoop-1.2.1 hadoop
     - run
     - user: root
     - require:
-      - cmd: chmod_jdk
+      - cmd: extract_hadoop
 
-/etc/environment:
+/opt/hbase-0.94.11.tar.gz:
   file.managed:
-    - source: salt://etc/environment
+    - source: salt://packages/hbase-0.94.11.tar.gz
     - mode: 644
     - user: root
     - group: root
+
+extract_hbase:
+  cmd:
+    - cwd: /opt
+    - names:
+      - tar xvpf hbase-0.94.11.tar.gz
+    - run
+    - user: root
+    - require:
+      - file: /opt/hbase-0.94.11.tar.gz
+
+init_hbase:
+  cmd:
+    - cwd: /opt
+    - names:
+      - ln -s hbase-0.94.11 hbase
+    - run
+    - user: root
+    - require:
+      - cmd: extract_hbase
+
+/opt/hive-0.10.0.tar.gz:
+  file.managed:
+    - source: salt://packages/hive-0.10.0.tar.gz
+    - mode: 644
+    - user: root
+    - group: root
+
+extract_hive:
+  cmd:
+    - cwd: /opt
+    - names:
+      - tar xvpf hive-0.10.0.tar.gz
+    - run
+    - user: root
+    - require:
+      - file: /opt/hive-0.10.0.tar.gz
+
+init_hive:
+  cmd:
+    - cwd: /opt
+    - names:
+      - ln -s hive-0.10.0 hive
+    - run
+    - user: root
+    - require:
+      - cmd: extract_hive
