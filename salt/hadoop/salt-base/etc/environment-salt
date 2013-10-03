@@ -1,3 +1,4 @@
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/opt/jdk/bin:/opt/hadoop/bin:/opt/hbase/bin:/opt/hive/bin:/opt/mvn/bin"
 JAVA_HOME=/opt/jdk
 MAVEN_HOME=/opt/mvn
+LC_ALL=en_US.UTF8
