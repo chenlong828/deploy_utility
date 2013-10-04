@@ -15,15 +15,9 @@ extract_hadoop:
     - require:
       - file: /opt/hadoop-1.2.1-bin.tar.gz
 
-init_hadoop:
-  cmd:
-    - cwd: /opt
-    - names:
-      - ln -s hadoop-1.2.1 hadoop
-    - run
-    - user: root
-    - require:
-      - cmd: extract_hadoop
+/opt/hadoop:
+  file.symlink:
+    - target: /opt/hadoop-1.2.1
 
 /opt/hbase-0.94.11.tar.gz:
   file.managed:
@@ -42,15 +36,9 @@ extract_hbase:
     - require:
       - file: /opt/hbase-0.94.11.tar.gz
 
-init_hbase:
-  cmd:
-    - cwd: /opt
-    - names:
-      - ln -s hbase-0.94.11 hbase
-    - run
-    - user: root
-    - require:
-      - cmd: extract_hbase
+/opt/hbase:
+  file.symlink:
+    - target: /opt/hbase-0.94.1
 
 /opt/hive-0.10.0.tar.gz:
   file.managed:
@@ -69,12 +57,7 @@ extract_hive:
     - require:
       - file: /opt/hive-0.10.0.tar.gz
 
-init_hive:
-  cmd:
-    - cwd: /opt
-    - names:
-      - ln -s hive-0.10.0 hive
-    - run
-    - user: root
-    - require:
-      - cmd: extract_hive
+/opt/hive:
+  file.symlink:
+    - target: /opt/hive-0.10.0
+
