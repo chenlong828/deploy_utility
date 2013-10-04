@@ -38,7 +38,7 @@ extract_hbase:
 
 /opt/hbase:
   file.symlink:
-    - target: /opt/hbase-0.94.1
+    - target: /opt/hbase-0.94.11
 
 /opt/hive-0.10.0.tar.gz:
   file.managed:

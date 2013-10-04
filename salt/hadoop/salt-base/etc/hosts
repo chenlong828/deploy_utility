@@ -4,6 +4,7 @@
 172.23.21.191	hadoop-slave1
 172.23.199.54	hadoop-slave2
 172.23.75.160	hadoop-slave3
+172.23.174.116	hadoop-slave4
 
 # The following lines are desirable for IPv6 capable hosts
 ::1     ip6-localhost ip6-loopback
