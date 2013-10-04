@@ -17,6 +17,6 @@ echo $saltmaster_hostip"	"$saltmaster_host >> /etc/hosts
 /etc/init.d/salt-minion restart
 
 mkdir /dfs
-mkfs.ext3 /dev/sdb
-echo -e "/dev/sdb\t/dfs\text3\tdefaults\t0\t0" >> /etc/fstab
+mkfs.ext3 /dev/sdb < "y"
+echo "/dev/sdb\t/dfs\text3\tdefaults\t0\t0" >> /etc/fstab
 mount -a
