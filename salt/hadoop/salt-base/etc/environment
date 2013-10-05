@@ -1,2 +1,2 @@
-PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/opt/jdk/bin:/opt/hadoop/bin:/opt/hbase/bin:/opt/hive/bin"
+PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/opt/jdk/bin:/opt/hadoop/bin:/opt/hbase/bin:/opt/hive/bin:/opt/zookeeper/bin"
 JAVA_HOME=/opt/jdk

@@ -38,14 +38,14 @@
   </property>
   <property>
     <name>hbase.zookeeper.property.clientPort</name>
-    <value>2222</value>
+    <value>2181</value>
     <description>Property from ZooKeeper's config zoo.cfg.
       The port at which the clients will connect.
     </description>
   </property>
   <property>
     <name>hbase.zookeeper.quorum</name>
-    <value>hadoop-master</value>
+    <value>hadoop-master,hadoop-slave1,hadoop-slave2,hadoop-slave3,hadoop-slave4</value>
     <description>Comma separated list of servers in the ZooKeeper Quorum.
       For example, "host1.mydomain.com,host2.mydomain.com,host3.mydomain.com".
       By default this is set to localhost for local and pseudo-distributed modes
