@@ -41,23 +41,29 @@ And then, login to the salt master to connect each salt minior:
 > salt-key -L
 > salt-key -a hadoop*
 
+After the salt connection have been established, we can initialize our host, such as deploy public ssh keys, refresh host lists.
+
+> salt "*" state.sls host-init
+
 2. Deploy the JDK.
 -------------------------
 
 use salt to deploy jdk packages to /opt directory:
 
-> salt 'hadoop*' state.sls java
+> salt 'hadoop*' state.sls system.java
 
 Adjust the environments settings, the environment file is located in the etc/environments file.
 
-> salt 'hadoop*' statel.sls java-env
+> salt 'hadoop*' statel.sls system.java-env
 
 3. Deploy the hadoop files
 -------------------
 
 use salt to deploy the hadoop file as follow:
 
-> salt 'hadoop*' state.sls hadoop-bin
+> salt 'hadoop*' state.sls hadoop.hadoop-bin
+
+> salt 'hadoop*' satte.sls hadoop.zookeper-bin
 
 This will taks a few seconds, for these tar package will be transferred to the hosts and process an extract action.
 
@@ -67,11 +73,11 @@ After this process, the /opt directory on the server will appear several sub-dir
 ---------------------
 Use the salt to sync config:
 
->salt 'hadoop*' state.sls hadoop-cluster
+>salt 'hadoop*' state.sls hadoop.hadoop-cluster
 
 Each of the host have been synchronized, and we can start our hadoop cluster:
 
-> salt 'hadoop-master' cmd.run start-all.sh
+> ssh hadoop-master start-all.sh
 
 the start-all.sh is a script provided by hadoop.
 
@@ -79,9 +85,12 @@ the start-all.sh is a script provided by hadoop.
 ---------------------
 As we have not deployed a zookeeper cluster, we just use the only 1 zookeeper provided by hbase, remember in the production environment, we should provide at least 3-7 zookeeper server in our environment.
 
-> salt 'hadoop*' state.sls hbase-conf
+
+> salt 'hadoop*' state.sls hadoop.hbase-conf
 
 Then we can start our hbase cluster:
+
+> salt 'hadoop*' cmd.run zkServer.sh start
 
 > salt 'hadoop-master' cmd.run start-hbase.sh
 
@@ -93,4 +102,4 @@ First, we should install maven, assume we deploy maven in /opt/mvn.
 
 Sync the environment file:
 
-> salt 'saltstack' state.sls dev-env
+> salt 'saltstack' state.sls develoment.dev-env
