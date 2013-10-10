@@ -15,7 +15,7 @@ chmod_jdk:
     - require:
       - file: /opt/jdk-6u34-linux-x64.bin
 
-run_jdk:
+install_jdk:
   cmd:
     - cwd: /opt
     - names:
@@ -24,3 +24,10 @@ run_jdk:
     - user: root
     - require:
       - cmd: chmod_jdk
+
+/etc/environment:
+  file.managed:
+    - source: salt://lxc-sandbox/etc/environment
+    - mode: 644
+    - user: root
+    - group: root
