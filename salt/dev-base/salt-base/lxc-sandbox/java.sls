@@ -1,9 +1,18 @@
+time_zone:
+  cmd:
+    - names:
+    - cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && date
+    - run
+    - user: root
+
 /opt/jdk-6u34-linux-x64.bin:
   file.managed:
     - source: salt://packages/jdk-6u34-linux-x64.bin
     - mode: 644
     - user: root
     - group: root
+    - require:
+      - cmd: time_zone
 
 chmod_jdk:
   cmd:
@@ -24,6 +33,32 @@ install_jdk:
     - user: root
     - require:
       - cmd: chmod_jdk
+
+subversion:
+  pkg:
+    - installed
+
+unzip:
+  pkg:
+    - installed
+
+/opt/apache-maven-2.2.1-bin.zip:
+  file.managed:
+    - source: salt://packages/apache-maven-2.2.1-bin.zip
+    - mode: 644
+    - user: root
+    - group: root
+
+install_maven:
+  cmd:
+    - cwd: /opt
+    - names:
+      - unzip apache-maven-2.2.1-bin.zip && ln -s apache-maven-2.2.1 maven
+    - run
+    - user: root
+    - requre:
+      - file: /opt/apache-maven-2.2.1-bin.zip
+      - package: unzip
 
 /etc/environment:
   file.managed:
